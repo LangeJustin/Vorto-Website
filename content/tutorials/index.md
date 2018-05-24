@@ -377,7 +377,7 @@ and
         ### END SAMPLE CODE
 ```
     
-**The following sections are of particular interest:**
+{{< warning title="The following sections are of particular interest" >}}{{< /warning >}}
     
 - Import the GrovePi dependencies:
 
@@ -404,10 +404,8 @@ and
       # constants
       ultrasonic_ranger = 3
 ```            
-        
-**Function `periodicAction`.**
-        
-The function `periodicAction` is called periodically every `timePeriod` seconds. It is meant to periodically read your sensor’s values and transmit them using the thing type as a data model layer and the Paho MQTT Client.
+              
+- The function `periodicAction` is called periodically every `timePeriod` seconds. It is meant to periodically read your sensor’s values and transmit them using the thing type as a data model layer and the Paho MQTT Client.
         
 - Read the data and assign it to the functional block properties:
 
@@ -425,7 +423,10 @@ The function `periodicAction` is called periodically every `timePeriod` seconds.
 
 ```sh  
       python GENERATED_MAIN_PYTHON_FILE.py
-```       
-        
-### 8.  Verify incoming sensor data.
+```      
+`example output:`
+
+![grovePi Screenshot](/images/tutorials/grovepi/output_screenhot_grovepi.png)
+
+<Verify incoming sensor data still needs to be demonstrated> 
         

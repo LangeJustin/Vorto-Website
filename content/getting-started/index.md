@@ -3,7 +3,7 @@ title: "Getting Started"
 date: 2018-05-09T10:58:37+08:00
 weight: 20
 ---
-# Connecting a Java based device to Eclipse Hono Sandbox with Vorto
+# Connecting a Java based device to Eclipse Honogit:q Sandbox with Vorto
 ![Material Screenshot](/images/getting-started-ar.png)
 
 This getting-started explains how to generate a simple **Java application** that sends **distance** sensor data via **MQTT**. In 4 simple steps, we will create and verify a digital twin of our device in Eclipse Ditto.
@@ -22,7 +22,7 @@ This getting-started explains how to generate a simple **Java application** that
 - Unzip the project and import it as an existing maven project in the IDE of your choice, e.g. Eclipse
 
 ## 3. Edit configuration details
-Edit configuration details in `src/main/java/device/distancesensor/Distancesensor.java`. You can copy and paste the following example for the [distace sensor](http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor):
+Edit configuration details in `src/main/java/device/distancesensor/Distancesensor.java`. You can copy and paste the following example for the [distance sensor](http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor):
 
 	// Hono MQTT Endpoint
 	private static final String MQTT_ENDPOINT = "ssl://hono.eclipse.org:8883";
@@ -48,7 +48,7 @@ Edit configuration details in `src/main/java/device/distancesensor/Distancesenso
 
 ## 4. Run and verify data
 - Right click on `Distancesensor.java` in you IDE and `run as Java Application` to start sending data. 
-- See new state of your digital twin:
+- Verify if your data is :
 
 ```sh
 curl -X GET https://ditto.eclipse.org/api/2/things/hono.eclipse.org:112233 -H 'authorization: Basic ZGVtbzE6ZGVtbw==' -H 'Accept: application/json'
