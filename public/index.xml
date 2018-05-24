@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eclipse Vorto</title>
+    <link>https://example.org/</link>
+    <description>Recent content on Eclipse Vorto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Mar 2016 21:07:13 +0100</lastBuildDate>
+    
+	<atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Eclipse Vorto</title>
+      <link>https://example.org/eclipse-vorto/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://example.org/eclipse-vorto/</guid>
+      <description>Why Vorto? Standardization organizations and industry consortia work hard on device abstraction related standards. Some of them are domain specific, some are very generic, and all of them are useful for a large number of use cases. However in most cases there is no tooling available that allows for creating and managing standard conform device representations. It is also the case that many standards are very complex and it is not easy to validate existing abstract representations of devices against the standard.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started</title>
+      <link>https://example.org/getting-started/</link>
+      <pubDate>Wed, 09 May 2018 10:58:37 +0800</pubDate>
+      
+      <guid>https://example.org/getting-started/</guid>
+      <description>Connecting a Java based device to Eclipse Hono/Ditto Sandbox with Vorto This getting-started explains how to generate a simple Java application that sends distance sensor data via MQTT. In 4 simple steps, we will create and verify a digital twin of our device in Eclipse Ditto.
+Prerequisites  Maven IDE of your choice Curl  1. Choosing an Information Model  In this example, we will use an existing Vorto Information Model describing a distace sensor.</description>
+    </item>
+    
+    <item>
+      <title>Tutorials</title>
+      <link>https://example.org/tutorials/</link>
+      <pubDate>Wed, 09 Mar 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://example.org/tutorials/</guid>
+      <description>Connecting a Java based Device This tutorial explains how to generate a simple Java application that sends distance sensor data via MQTT. In 4 simple steps, we will create a digital twin of our device in Eclipse Ditto.
+Prerequisites  Maven IDE of your choice Curl  1. Choosing an Information Model  In this example, we will use an existing Vorto Information Model describing a distace sensor.  Sandbox has limited resources</description>
+    </item>
+    
+    <item>
+      <title>Downloads</title>
+      <link>https://example.org/downloads/</link>
+      <pubDate>Wed, 09 May 2018 10:58:37 +0800</pubDate>
+      
+      <guid>https://example.org/downloads/</guid>
+      <description>To create informations Models you need to download the eclipse Vorto toolset for you eclipse IDEs</description>
+    </item>
+    
+    <item>
+      <title>Community</title>
+      <link>https://example.org/community/</link>
+      <pubDate>Wed, 09 May 2018 10:58:37 +0800</pubDate>
+      
+      <guid>https://example.org/community/</guid>
+      <description>Mailing List A great way to stay up to date with Vorto activity is to subscribe to the Mailing list provided by Eclipse. Sign up for the mailing list here.
+Discussion Forum A general discussion forum can be found here.
+Issue Tracker Issues and bugs related to Vorto are tracked with the Github Issue tracking system. If you find any issues, please report them here.
+Vorto Wiki Access Vorto wiki here.</description>
+    </item>
+    
+    <item>
+      <title>Release Notes</title>
+      <link>https://example.org/release-notes/</link>
+      <pubDate>Wed, 09 Mar 2016 20:10:46 +0100</pubDate>
+      
+      <guid>https://example.org/release-notes/</guid>
+      <description>0.10.0 milestone 3 Fixes and Enhancements
+ EU-GDPR Compliance of Vorto Repository, i.e. Export of user-specific Vorto models. Eclipse Hono Generator, supporting the generation of Arduino-, Python- and Java source code. Code Generator Configuration UI. Code Generators that are executed from the Eclipse Vorto Toolset do now provide a configuration UI that allows developers to customize the execution of the generator.  API Changes
+ Vorto Code Generators must now implement org.</description>
+    </item>
+    
+  </channel>
+</rss>

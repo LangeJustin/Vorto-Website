@@ -180,12 +180,8 @@ curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233
 }
 ```
 
-## Connecting a Device with Arduino
+## Connecting a ESP8266 with Arduino
 This tutorial explains how to generate an Arduino sketch for a given Information Model and send the device data via MQTT.
-
-{{< warning title="Sandbox has limited resources" >}}
-In this tutorial, we are using the Hono/Ditto Sandbox for demonstration purposes. Since they have (very) limited resources, we would strongly suggest to use a local instance that fits your needs.
-{{< /warning >}}
 
 ### Prerequisites
 * [Arduino IDE](https://www.arduino.cc/en/Main/Software)
@@ -242,7 +238,7 @@ String hono_authId;
 
 #if (USE_SECURE_CONNECTION == 1)
     /* SHA-1 fingerprint of the server certificate of the MQTT broker, UPPERCASE and spacing */
-    const char* mqttServerFingerprint = "<xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx>";
+    const char* mqttServerFingerprint = "E6 A3 B4 5B 06 2D 50 9B 33 82 28 2D 19 6E FE 97 D5 95 6C CB";
 #endif
 
 /* WiFi Configuration */
@@ -250,54 +246,22 @@ const char* ssid = "<ENTER YOUR WIFI SSID>";
 const char* password = "<ENTER YOUR WIFI PASSWORD>"; 
 ```
 
-* In order to verify the server, you need to add a fingerprint of the server certificate to the code. This finger print is an SHA-1 hash of the certificate of the MQTT broker.
+* For a secure connection, you need a fingerprint of the server certificate. This finger print is an SHA-1 hash of the certificate of the MQTT broker.
 
-* [Get the certificate](https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt) and copy and paste the content in a .crt file. The fingerprint for the certificate above can be extracted by invoking:
+* If you want to create the fingerprint yourself [get the certificate](https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt) and copy and paste the content in a .crt file. The fingerprint for the certificate can be extracted by invoking:
 
 ```sh
 openssl x509 -noout -fingerprint -sha1 -inform pem -in [certificate-file.crt]
 ```
 
-* Connect your ESP8266 to your computer and select the virtual COM port to which your device is connected in the Arduino IDE under **Tools -> Port**.
+* Connect your ESP8266 to your computer and select the virtual COM port to which your device is connected in the Arduino IDE under **Tools -> Port** and upload the sketch.
 
-### Verify incoming sensor data.
-- See new state of your digital twin:
+* Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
+All you need to change is the Host to the Sandbox URL in the src/main/org.eclipse.hono.devices/HonoHttpDevice.java File.
 
 ```sh
-BASE64_CRED=$(echo -n "demo1:demo" | base64 | tr -d '\n')
-curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 
--H 'authorization: '$BASE64_CRED'' 
--H "Accept: application/json"
-```
-
-**Response:**
-```sh
-{  
-   "thingId":"org.eclipse.vorto:112233",
-   "attributes":{  
-      "schema":{  
-         "distance":"com.ipso.smartobjects.Distance:0.0.1"
-      },
-      "_modelId":"demo.iot.device.DistanceSensor:1.0.0",
-      "thingName":"DistanceSensor",
-      "createdOn":"2018-05-15 10:08:29+0000",
-      "deviceId":"112233"
-   },
-   "features":{  
-      "distance":{  
-         "properties":{  
-            "status":{  
-               "sensor_value":74,
-               "sensor_units":"",
-               "min_measured_value":76,
-               "max_measured_value":96,
-               "min_range_value":3,
-               "max_range_value":69,
-               "current_calibration":"",
-               "application_type":""
-            }
-         }
-      }
-   }
-}
+    /**
+    Define the host where Honos HTTP adapter can be reached.
+    */
+    public static final String HONO_HTTP_ADAPTER_HOST = "http://hono.eclipse.org";
 ```
