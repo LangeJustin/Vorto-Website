@@ -395,7 +395,7 @@ and
       hono_clientId = hono_deviceId
       hono_authId = hono_deviceId + "@" + hono_tenant
       hono_certificatePath = "PATH TO YOUR CERTIFICATE"
-      ditto_namespace = "com.bsv"
+      ditto_namespace = "org.eclipse.vorto"
 ```
             
 - Define a constant and assign the pin number of the pin to which the sensor is physically connected:

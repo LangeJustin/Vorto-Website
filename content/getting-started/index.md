@@ -48,10 +48,10 @@ Edit configuration details in `src/main/java/device/distancesensor/Distancesenso
 
 ## 4. Run and verify data
 - Right click on `Distancesensor.java` in you IDE and `run as Java Application` to start sending data. 
-- Verify if your data is :
+- Verify with Java:
 
 ```sh
-curl -X GET https://ditto.eclipse.org/api/2/things/hono.eclipse.org:112233 -H 'authorization: Basic ZGVtbzE6ZGVtbw==' -H 'Accept: application/json'
+curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 -H 'authorization: Basic ZGVtbzE6ZGVtbw==' -H 'Accept: application/json'
 ```
 
 **Response:**
