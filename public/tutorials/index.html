@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Tutorials - Eclipse Vorto</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Describe. Share. Integrate.">
+    
+    <link rel="canonical" href="https://example.org/tutorials/">
+    
+    <meta name="author" content="The Eclipse Vorto Project">
+    
+
+    <meta property="og:url" content="https://example.org/tutorials/">
+    <meta property="og:title" content="Eclipse Vorto">
+    <meta property="og:image" content="https://example.org/images/vorto.png">
+    <meta name="apple-mobile-web-app-title" content="Eclipse Vorto">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/vorto.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/vorto.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="https://example.org/css/vorto.css">
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-blue palette-accent-teal">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Tutorials
+      </div>
+    </div>
+
+    
+    <div class="button button-twitter" role="button" aria-label="Twitter">
+       <a href="https://twitter.com/VortoIoT" title="@VortoIoT on Twitter" target="_blank" class="toggle-button icon icon-twitter"></a>
+    </div>
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/eclipse/vorto" title="@eclipse/vorto on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/eclipse/vorto" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/vorto.png">
+        </div>
+      
+      <div class="name">
+        <strong>Eclipse Vorto <span class="version">0.10.0.M3</span></strong>
+        
+          <br>
+          eclipse/vorto
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="http://vorto.eclipse.org" title="Repository" data-action="download">
+              <i class="icon icon-search"></i> Repository
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/eclipse/vorto" target="_blank" title="Vorto on GitHub" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vorto" href="https://example.org/eclipse-vorto/">
+	
+	Vorto
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Getting started" href="https://example.org/getting-started/">
+	
+	Getting started
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Tutorials" href="https://example.org/tutorials/">
+	
+	Tutorials
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Downloads" href="https://example.org/downloads/">
+	
+	Downloads
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Community" href="https://example.org/community/">
+	
+	Community
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Release Notes" href="https://example.org/release-notes/">
+	
+	Release Notes
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">Build Status</span>
+        
+        <ul>
+          <li>
+            <a href="https://travis-ci.org/eclipse/vorto" title="Travis Build Status" target="_blank">
+              <img src="https://travis-ci.org/eclipse/vorto.svg?branch=development" />
+            </a>
+          </li>
+          <li>
+            <a href="https://maven-badges.herokuapp.com/maven-central/org.eclipse.vorto/org.eclipse.vorto.parent" title="Travis Build Status" target="_blank">
+              <img src="https://maven-badges.herokuapp.com/maven-central/org.eclipse.vorto/org.eclipse.vorto.parent/badge.svg" />
+            </a>
+          </li>
+        </ul>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Tutorials </h1>
+
+			
+
+<h2 id="connecting-a-java-based-device">Connecting a Java based Device</h2>
+
+<p>This tutorial explains how to generate a simple Java application that sends distance sensor data via MQTT. In 4 simple steps, we will create a digital twin of our device in Eclipse Ditto.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+<li>Maven</li>
+<li>IDE of your choice</li>
+<li>Curl</li>
+</ul>
+
+<h3 id="1-choosing-an-information-model">1. Choosing an Information Model</h3>
+
+<ul>
+<li>In this example, we will use an existing <code>Vorto Information Model</code> describing a <a href="http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor">distace sensor</a>.</li>
+</ul>
+
+<div class="admonition warning">
+<p class="admonition-title">Sandbox has limited resources</p>
+<p>In this tutorial, we are using the Hono/Ditto Sandbox for demonstration purposes. Since they have (very) limited resources, we would strongly suggest to use a local instance that fits your needs.</p>
+</div>
+
+<h3 id="2-creating-a-digital-twin">2. Creating a digital twin</h3>
+
+<p>With <a href="https://www.eclipse.org/ditto/">Eclipse Ditto</a>, we are able to create a digital twin of our device. In other words, we are creating a virtual, cloud based, representation that is described by our <code>Vorto Information Model</code>.</p>
+
+<blockquote>
+<p>Note: You might choose a different thingId &amp; deviceId since they might already exists</p>
+</blockquote>
+
+<pre><code class="language-sh">BASE64_CRED=$(echo -n &quot;demo1:demo&quot; | base64 | tr -d '\n') 
+curl -X PUT https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 
+-H 'authorization: Basic '$BASE64_CRED'' 
+-H &quot;Accept: application/json&quot; 
+-d 'JSON payload' 
+</code></pre>
+
+<p>Example JSON payload:</p>
+
+<pre><code class="language-sh">{
+  &quot;thingId&quot;: &quot;org.eclipse.vorto:112233&quot;,
+  &quot;policyId&quot;: null,
+  &quot;attributes&quot;: {
+    &quot;schema&quot;: {
+      &quot;distance&quot;: &quot;com.ipso.smartobjects.Distance:0.0.1&quot;
+    },
+    &quot;_modelId&quot;: &quot;demo.iot.device.DistanceSensor:1.0.0&quot;,
+    &quot;thingName&quot;: &quot;DistanceSensor&quot;,
+    &quot;createdOn&quot;: &quot;2018-05-14 10:08:29+0000&quot;,
+    &quot;deviceId&quot;: &quot;112233&quot;
+  },
+  &quot;features&quot;: {}
+}
+</code></pre>
+
+<blockquote>
+<p>Optional: check if your device was created:</p>
+</blockquote>
+
+<pre><code class="language-sh">BASE64_CRED=$(echo -n &quot;demo1:demo&quot; | base64 | tr -d '\n')
+curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 
+-H 'authorization: Basic '$BASE64_CRED'' 
+-H &quot;Accept: application/json&quot;
+</code></pre>
+
+<h3 id="3-registering-to-eclipse-hono">3. Registering to Eclipse Hono</h3>
+
+<p>Eclipse Hono provides a remote service interface to connect our device to eclipse Ditto, our digital twin. To use Hono, we need to <code>register our device</code> and <code>add device credentials</code></p>
+
+<p><strong>3.1 Registering our Device</strong></p>
+
+<pre><code class="language-sh">curl -X POST http://hono.eclipse.org:28080/registration/DEFAULT_TENANT
+-i -H 'Content-Type: application/json'
+-d '{&quot;device-id&quot;: &quot;112233&quot;,&quot;thingId&quot;:&quot;org.eclipse.vorto:112233&quot;,&quot;modelId&quot;:&quot;demo.iot.device.DistanceSensor:1.0.0&quot;}'
+</code></pre>
+
+<blockquote>
+<p>Optional: Check registration of your device:</p>
+</blockquote>
+
+<pre><code class="language-sh">curl -i http://hono.eclipse.org:28080/registration/DEFAULT_TENANT/112233
+</code></pre>
+
+<p><strong>3.2 Adding device credesntials</strong></p>
+
+<pre><code class="language-sh">PWD_HASH=$(echo -n &quot;secret123&quot; | openssl dgst -binary -sha512 | base64 | tr -d '\n') 
+curl -X POST http://hono.eclipse.org:28080/credentials/DEFAULT_TENANT
+-i -H 'Content-Type: application/json'
+-d 'JSON payload' 
+</code></pre>
+
+<p>Example JSON payload:</p>
+
+<pre><code class="language-sh">{
+  &quot;device-id&quot;: &quot;112233&quot;,
+  &quot;auth-id&quot;: &quot;112233&quot;,
+  &quot;type&quot;: &quot;hashed-password&quot;,
+  &quot;secrets&quot;: [
+    {
+      &quot;hash-function&quot;: &quot;sha-512&quot;,
+      &quot;pwd-hash&quot;: &quot;'$PWD_HASH'&quot;
+    }
+  ]
+}
+</code></pre>
+
+<blockquote>
+<p>Optional: Check credentials of your device</p>
+</blockquote>
+
+<pre><code class="language-sh">curl -i http://hono.eclipse.org:28080/credentials/DEFAULT_TENANT/112233 
+</code></pre>
+
+<h3 id="4-using-code-generators">4. Using Code Generators</h3>
+
+<ul>
+<li>Go to the Information Model of your device in the Vorto Repository, eg <a href="http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor">distance sensor</a>.</li>
+<li>On the right side, click on the Hono generator that will generate and download a Java application.</li>
+<li>Unzip the project and import it as an existing maven project in the IDE of your choice, e.g. Eclipse</li>
+<li>copy and paste the certificate of <a href="https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt">https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt</a> to <code>src/main/resources/certificate/hono.crt</code> in your project</li>
+<li>Edit configuration details in <code>src/main/java/device/distancesensor/Distancesensor.java</code></li>
+</ul>
+
+<p><strong>To check configurations details:</strong></p>
+
+<pre><code class="language-sh">curl -i http://hono.eclipse.org:28080/credentials/DEFAULT_TENANT/112233
+</code></pre>
+
+<blockquote>
+<p>Note: AUTH_ID needs to be followed by &ldquo;@YOUR_TENANT&rdquo;. See example below.</p>
+</blockquote>
+
+<pre><code>// Hono MQTT Endpoint
+private static final String MQTT_ENDPOINT = &quot;ssl://hono.eclipse.org:8883&quot;;
+
+// Your Tenant
+private static final String HONO_TENANT = &quot;DEFAULT_TENANT&quot;;
+
+// Your DeviceId
+private static final String DEVICE_ID = &quot;112233&quot;;
+
+// Device authentication ID
+private static final String AUTH_ID = &quot;112233@DEFAULT_TENANT&quot;;
+
+// Ditto Namespace
+private static final String DITTO_NAMESPACE = &quot;org.eclipse.vorto&quot;;
+
+// Device authentication Password
+private static final String PASSWORD = &quot;secret123&quot;;
+</code></pre>
+
+<h3 id="5-run-and-verify-data">5. Run and verify data</h3>
+
+<ul>
+<li>Right click on <code>Distancesensor.java</code> in you IDE and <code>run as Java Application</code> to start sending data.</li>
+<li>See new state of your digital twin:</li>
+</ul>
+
+<pre><code class="language-sh">BASE64_CRED=$(echo -n &quot;demo1:demo&quot; | base64 | tr -d '\n')
+curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 
+-H 'authorization: '$BASE64_CRED'' 
+-H &quot;Accept: application/json&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+
+<pre><code class="language-sh">{  
+   &quot;thingId&quot;:&quot;org.eclipse.vorto:112233&quot;,
+   &quot;attributes&quot;:{  
+      &quot;schema&quot;:{  
+         &quot;distance&quot;:&quot;com.ipso.smartobjects.Distance:0.0.1&quot;
+      },
+      &quot;_modelId&quot;:&quot;demo.iot.device.DistanceSensor:1.0.0&quot;,
+      &quot;thingName&quot;:&quot;DistanceSensor&quot;,
+      &quot;createdOn&quot;:&quot;2018-05-15 10:08:29+0000&quot;,
+      &quot;deviceId&quot;:&quot;112233&quot;
+   },
+   &quot;features&quot;:{  
+      &quot;distance&quot;:{  
+         &quot;properties&quot;:{  
+            &quot;status&quot;:{  
+               &quot;sensor_value&quot;:74,
+               &quot;sensor_units&quot;:&quot;&quot;,
+               &quot;min_measured_value&quot;:76,
+               &quot;max_measured_value&quot;:96,
+               &quot;min_range_value&quot;:3,
+               &quot;max_range_value&quot;:69,
+               &quot;current_calibration&quot;:&quot;&quot;,
+               &quot;application_type&quot;:&quot;&quot;
+            }
+         }
+      }
+   }
+}
+</code></pre>
+
+<h2 id="connecting-a-device-with-arduino">Connecting a Device with Arduino</h2>
+
+<p>This tutorial explains how to generate an Arduino sketch for a given Information Model and send the device data via MQTT.</p>
+
+<div class="admonition warning">
+<p class="admonition-title">Sandbox has limited resources</p>
+<p>In this tutorial, we are using the Hono/Ditto Sandbox for demonstration purposes. Since they have (very) limited resources, we would strongly suggest to use a local instance that fits your needs.</p>
+</div>
+
+<h3 id="prerequisites-1">Prerequisites</h3>
+
+<ul>
+<li><a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>
+
+<ul>
+<li>ESP8266 Package</li>
+<li><a href="https://pubsubclient.knolleary.net/">PubSubClient</a></li>
+</ul></li>
+<li>OpenSSL</li>
+<li>Curl</li>
+</ul>
+
+<h3 id="1-setup-your-development-environment-on-your-development-machine">1. Setup your development environment (on your development machine).</h3>
+
+<ul>
+<li><p>Download and install the <a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>.</p>
+
+<ul>
+<li><p>Install the ESP8266 Board Package.</p>
+
+<ol>
+<li><p>Select <strong>File -&gt; Preferences -&gt; Additional Board Manager URLs</strong> and add <code>http://arduino.esp8266.com/stable/package_esp8266com_index.json</code>.</p></li>
+
+<li><p>Select <strong>Tools -&gt; Board -&gt; Boards Manager…</strong>, look for the esp8266 package and install the latest version.</p></li>
+
+<li><p>Select <strong>Tools -&gt; Board</strong>.</p>
+
+<p>You should now find all the supported ESP8266 boards listed, chose the one you are working with.</p></li>
+
+<li><p>Plug-in the NodeMCU board and check in the Device Manager, whether you have the necessary USB serial driver installed. In case it is missing and Windows Update can’t find the driver, get the latest version of the driver from the <a href="https://github.com/nodemcu/nodemcu-devkit/blob/master/Drivers/">NodeMCU github repository</a>.</p></li>
+</ol></li>
+
+<li><p>Select <strong>Sketch -&gt; Include Library -&gt; Manage Libraries</strong>, look for the PubSubClient and install the latest version.</p>
+
+<blockquote>
+<p>Note: You can use the search field to search for the PubSubClient.</p>
+</blockquote></li>
+</ul>
+
+<p>The PubSubClient will get installed in the Arduino/libraries directory, i.e. in <code>{HOME}/Arduino/libraries</code>. As you might need to adjust the buffer size for the MQTT payload, it is a good thing to verify the location of the library at this point.</p></li>
+</ul>
+
+<h3 id="2-generating-an-arduino-sketch-using-the-arduino-generator-arduino-project">2. Generating an arduino sketch using the Arduino Generator (Arduino project).</h3>
+
+<ul>
+<li>Go to the Information Model of the <a href="http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor">distace sensor</a> in the Vorto Repository</li>
+<li>On the right side, click on the Arduino generator</li>
+<li>Store the ZIP file and extract the source code.</li>
+<li>Open the INO file in your Arduino IDE.</li>
+</ul>
+
+<h3 id="3-adjust-the-arduino-project-according-to-your-needs">3. Adjust the Arduino Project according to your needs.</h3>
+
+<p>The following important changes have to be made:</p>
+
+<pre><code class="language-sh">/* Your tenant in Eclipse Hono / Bosch IoT Hub */
+#define hono_tenant &quot;DEFAULT_TENANT&quot;
+
+/* Device Configuration */
+String hono_deviceId = &quot;112233&quot;;
+String ditto_namespace = &quot;org.eclipse.vorto&quot;;
+
+/* MQTT broker endpoint */
+const char* hono_endpoint = &quot;ssl://hono.eclipse.org:8883&quot;;
+const char* hono_password = &quot;secret123&quot;;
+String hono_authId;
+
+#if (USE_SECURE_CONNECTION == 1)
+    /* SHA-1 fingerprint of the server certificate of the MQTT broker, UPPERCASE and spacing */
+    const char* mqttServerFingerprint = &quot;&lt;xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx&gt;&quot;;
+#endif
+
+/* WiFi Configuration */
+const char* ssid = &quot;&lt;ENTER YOUR WIFI SSID&gt;&quot;;
+const char* password = &quot;&lt;ENTER YOUR WIFI PASSWORD&gt;&quot;; 
+</code></pre>
+
+<ul>
+<li><p>In order to verify the server, you need to add a fingerprint of the server certificate to the code. This finger print is an SHA-1 hash of the certificate of the MQTT broker.</p></li>
+
+<li><p><a href="https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt">Get the certificate</a> and copy and paste the content in a .crt file. The fingerprint for the certificate above can be extracted by invoking:</p></li>
+</ul>
+
+<pre><code class="language-sh">openssl x509 -noout -fingerprint -sha1 -inform pem -in [certificate-file.crt]
+</code></pre>
+
+<ul>
+<li>Connect your ESP8266 to your computer and select the virtual COM port to which your device is connected in the Arduino IDE under <strong>Tools -&gt; Port</strong>.</li>
+</ul>
+
+<h3 id="verify-incoming-sensor-data">Verify incoming sensor data.</h3>
+
+<ul>
+<li>See new state of your digital twin:</li>
+</ul>
+
+<pre><code class="language-sh">BASE64_CRED=$(echo -n &quot;demo1:demo&quot; | base64 | tr -d '\n')
+curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 
+-H 'authorization: '$BASE64_CRED'' 
+-H &quot;Accept: application/json&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+
+<pre><code class="language-sh">{  
+   &quot;thingId&quot;:&quot;org.eclipse.vorto:112233&quot;,
+   &quot;attributes&quot;:{  
+      &quot;schema&quot;:{  
+         &quot;distance&quot;:&quot;com.ipso.smartobjects.Distance:0.0.1&quot;
+      },
+      &quot;_modelId&quot;:&quot;demo.iot.device.DistanceSensor:1.0.0&quot;,
+      &quot;thingName&quot;:&quot;DistanceSensor&quot;,
+      &quot;createdOn&quot;:&quot;2018-05-15 10:08:29+0000&quot;,
+      &quot;deviceId&quot;:&quot;112233&quot;
+   },
+   &quot;features&quot;:{  
+      &quot;distance&quot;:{  
+         &quot;properties&quot;:{  
+            &quot;status&quot;:{  
+               &quot;sensor_value&quot;:74,
+               &quot;sensor_units&quot;:&quot;&quot;,
+               &quot;min_measured_value&quot;:76,
+               &quot;max_measured_value&quot;:96,
+               &quot;min_range_value&quot;:3,
+               &quot;max_range_value&quot;:69,
+               &quot;current_calibration&quot;:&quot;&quot;,
+               &quot;application_type&quot;:&quot;&quot;
+            }
+         }
+      }
+   }
+}
+</code></pre>
+
+
+			<aside class="copyright" role="note">
+  <div class="logo">
+    <a href="https://www.eclipse.org" target="_blank">
+      <img src="https://example.org/images/eclipse_logo_colour.png" />
+    </a>
+  </div>
+  <p class="notice">
+    
+    &copy; 2018 The Eclipse Vorto Project &ndash;
+    
+    Documentation built with
+    <a href="https://www.gohugo.io" target="_blank">Hugo</a>
+    using the
+    <a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+  </p>
+  <p class="quickLinks">
+    <a href="http://www.eclipse.org/legal/privacy.php" target="_blank">
+      &gt; Privacy Policy
+    </a>
+    <a href="http://www.eclipse.org/legal/termsofuse.php" target="_blank">
+      &gt; Terms of Use
+    </a>
+    <a href="http://www.eclipse.org/legal/copyright.php" target="_blank">
+      &gt; Copyright Agent
+    </a>
+    <a href="http://www.eclipse.org/legal" target="_blank">
+      &gt; Legal
+    </a>
+    <a href="https://www.eclipse.org/legal/epl-2.0/" target="_blank">
+      &gt; License
+    </a>
+  </p>
+</aside>
+
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/getting-started/" title="Getting Started">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Getting Started
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/downloads/" title="Downloads">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Downloads
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/example.org\/';
+      var repo_id  = 'eclipse\/vorto';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

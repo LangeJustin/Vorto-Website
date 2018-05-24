@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://example.org/eclipse-vorto/</loc>
+    <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.org/getting-started/</loc>
+    <lastmod>2018-05-09T10:58:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tutorials/</loc>
+    <lastmod>2016-03-09T20:08:11+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.org/downloads/</loc>
+    <lastmod>2018-05-09T10:58:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.org/community/</loc>
+    <lastmod>2018-05-09T10:58:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.org/release-notes/</loc>
+    <lastmod>2016-03-09T20:10:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/</loc>
+    <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
