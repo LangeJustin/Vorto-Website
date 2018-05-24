@@ -3,7 +3,7 @@ title: "Getting Started"
 date: 2018-05-09T10:58:37+08:00
 weight: 20
 ---
-# Connecting a Java based device to Eclipse Hono/Ditto Sandbox with Vorto
+# Connecting a Java based device to Eclipse Hono Sandbox with Vorto
 ![Material Screenshot](/images/getting-started-ar.png)
 
 This getting-started explains how to generate a simple **Java application** that sends **distance** sensor data via **MQTT**. In 4 simple steps, we will create and verify a digital twin of our device in Eclipse Ditto.
