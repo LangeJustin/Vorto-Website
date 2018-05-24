@@ -5,105 +5,15 @@ weight: 30
 ---
 
 ## Connecting a Java based Device
-This tutorial explains how to generate a simple Java application that sends distance sensor data via MQTT. In 4 simple steps, we will create a digital twin of our device in Eclipse Ditto.
+This tutorial explains how to generate a simple Java application that sends distance sensor data via MQTT.
 
 ### Prerequisites
 * Maven
 * IDE of your choice
-* Curl
 
 ### 1. Choosing an Information Model
 - In this example, we will use an existing `Vorto Information Model` describing a [distace sensor] (http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor).
 
-{{< warning title="Sandbox has limited resources" >}}
-In this tutorial, we are using the Hono/Ditto Sandbox for demonstration purposes. Since they have (very) limited resources, we would strongly suggest to use a local instance that fits your needs.
-{{< /warning >}}
-
-### 2. Creating a digital twin
-With [Eclipse Ditto](https://www.eclipse.org/ditto/), we are able to create a digital twin of our device. In other words, we are creating a virtual, cloud based, representation that is described by our `Vorto Information Model`.
-
-> Note: You might choose a different thingId & deviceId since they might already exists
-
-```sh
-BASE64_CRED=$(echo -n "demo1:demo" | base64 | tr -d '\n') 
-curl -X PUT https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 
--H 'authorization: Basic '$BASE64_CRED'' 
--H "Accept: application/json" 
--d 'JSON payload' 
-```
-
-Example JSON payload:
-```sh
-{
-  "thingId": "org.eclipse.vorto:112233",
-  "policyId": null,
-  "attributes": {
-    "schema": {
-      "distance": "com.ipso.smartobjects.Distance:0.0.1"
-    },
-    "_modelId": "demo.iot.device.DistanceSensor:1.0.0",
-    "thingName": "DistanceSensor",
-    "createdOn": "2018-05-14 10:08:29+0000",
-    "deviceId": "112233"
-  },
-  "features": {}
-}
-```
-
-> Optional: check if your device was created:
-
-```sh
-BASE64_CRED=$(echo -n "demo1:demo" | base64 | tr -d '\n')
-curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 
--H 'authorization: Basic '$BASE64_CRED'' 
--H "Accept: application/json"
-```
-### 3. Registering to Eclipse Hono
-Eclipse Hono provides a remote service interface to connect our device to eclipse Ditto, our digital twin. To use Hono, we need to `register our device` and `add device credentials`
-
-**3.1 Registering our Device**
-
-```sh
-curl -X POST http://hono.eclipse.org:28080/registration/DEFAULT_TENANT
--i -H 'Content-Type: application/json'
--d '{"device-id": "112233","thingId":"org.eclipse.vorto:112233","modelId":"demo.iot.device.DistanceSensor:1.0.0"}'
-```
-
-> Optional: Check registration of your device:
-
-```sh
-curl -i http://hono.eclipse.org:28080/registration/DEFAULT_TENANT/112233
-```
-
-**3.2 Adding device credesntials**
-
-```sh
-PWD_HASH=$(echo -n "secret123" | openssl dgst -binary -sha512 | base64 | tr -d '\n') 
-curl -X POST http://hono.eclipse.org:28080/credentials/DEFAULT_TENANT
--i -H 'Content-Type: application/json'
--d 'JSON payload' 
-```
-
-Example JSON payload:
-```sh
-{
-  "device-id": "112233",
-  "auth-id": "112233",
-  "type": "hashed-password",
-  "secrets": [
-    {
-      "hash-function": "sha-512",
-      "pwd-hash": "'$PWD_HASH'"
-    }
-  ]
-}
-```
-
- > Optional: Check credentials of your device
-
-```sh
-curl -i http://hono.eclipse.org:28080/credentials/DEFAULT_TENANT/112233 
-```
 
 ### 4. Using Code Generators
 - Go to the Information Model of your device in the Vorto Repository, eg [distance sensor](http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor).
@@ -137,50 +47,14 @@ curl -i http://hono.eclipse.org:28080/credentials/DEFAULT_TENANT/112233
 	// Device authentication Password
 	private static final String PASSWORD = "secret123";
 
+
 ### 5. Run and verify data
 - Right click on `Distancesensor.java` in you IDE and `run as Java Application` to start sending data. 
 - See new state of your digital twin:
 
-```sh
-BASE64_CRED=$(echo -n "demo1:demo" | base64 | tr -d '\n')
-curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 
--H 'authorization: '$BASE64_CRED'' 
--H "Accept: application/json"
-```
+-------------
 
-**Response:**
-```sh
-{  
-   "thingId":"org.eclipse.vorto:112233",
-   "attributes":{  
-      "schema":{  
-         "distance":"com.ipso.smartobjects.Distance:0.0.1"
-      },
-      "_modelId":"demo.iot.device.DistanceSensor:1.0.0",
-      "thingName":"DistanceSensor",
-      "createdOn":"2018-05-15 10:08:29+0000",
-      "deviceId":"112233"
-   },
-   "features":{  
-      "distance":{  
-         "properties":{  
-            "status":{  
-               "sensor_value":74,
-               "sensor_units":"",
-               "min_measured_value":76,
-               "max_measured_value":96,
-               "min_range_value":3,
-               "max_range_value":69,
-               "current_calibration":"",
-               "application_type":""
-            }
-         }
-      }
-   }
-}
-```
-
-## Connecting a ESP8266 with Arduino
+## Connecting a ESP8266 (Arduino)
 This tutorial explains how to generate an Arduino sketch for a given Information Model and send the device data via MQTT.
 
 ### Prerequisites
@@ -259,44 +133,6 @@ openssl x509 -noout -fingerprint -sha1 -inform pem -in [certificate-file.crt]
 * Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
 All you need to change is the Host to the Sandbox URL in the src/main/org.eclipse.hono.devices/HonoHttpDevice.java File.
 
-```sh
-BASE64_CRED=$(echo -n "demo1:demo" | base64 | tr -d '\n')
-curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 
--H 'authorization: '$BASE64_CRED'' 
--H "Accept: application/json"
-```
-
-**Response:**
-```sh
-{  
-   "thingId":"org.eclipse.vorto:112233",
-   "attributes":{  
-      "schema":{  
-         "distance":"com.ipso.smartobjects.Distance:0.0.1"
-      },
-      "_modelId":"demo.iot.device.DistanceSensor:1.0.0",
-      "thingName":"DistanceSensor",
-      "createdOn":"2018-05-15 10:08:29+0000",
-      "deviceId":"112233"
-   },
-   "features":{  
-      "distance":{  
-         "properties":{  
-            "status":{  
-               "sensor_value":74,
-               "sensor_units":"",
-               "min_measured_value":76,
-               "max_measured_value":96,
-               "min_range_value":3,
-               "max_range_value":69,
-               "current_calibration":"",
-               "application_type":""
-            }
-         }
-      }
-   }
-}
-```
 -------------
 
 
@@ -424,5 +260,6 @@ and
 
 ![grovePi Screenshot](/images/tutorials/grovepi/output_screenhot_grovepi.png)
 
-<Verify incoming sensor data still needs to be demonstrated> 
+- Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
+All you need to change is the Host to the Sandbox URL in the src/main/org.eclipse.hono.devices/HonoHttpDevice.java File.
         

@@ -6,12 +6,11 @@ weight: 20
 # Connecting a Java based device to Eclipse Honogit:q Sandbox with Vorto
 ![Material Screenshot](/images/getting-started-ar.png)
 
-This getting-started explains how to generate a simple **Java application** that sends **distance** sensor data via **MQTT**. In 4 simple steps, we will create and verify a digital twin of our device in Eclipse Ditto.
+This getting-started explains how to generate a simple **Java application** that sends **distance** sensor data via **MQTT**.
 
 ## Prerequisites
 * Maven
 * IDE of your choice
-* Curl
 
 ## 1. Choosing an Information Model
 - In this example, we will use an existing `Vorto Information Model` describing a [distace sensor](http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor).
@@ -48,40 +47,5 @@ Edit configuration details in `src/main/java/device/distancesensor/Distancesenso
 
 ## 4. Run and verify data
 - Right click on `Distancesensor.java` in you IDE and `run as Java Application` to start sending data. 
-- Verify with Java:
-
-```sh
-curl -X GET https://ditto.eclipse.org/api/2/things/org.eclipse.vorto:112233 -H 'authorization: Basic ZGVtbzE6ZGVtbw==' -H 'Accept: application/json'
-```
-
-**Response:**
-```sh
-{  
-   "thingId":"org.eclipse.vorto:112233",
-   "attributes":{  
-      "schema":{  
-         "distance":"com.ipso.smartobjects.Distance:0.0.1"
-      },
-      "_modelId":"demo.iot.device.DistanceSensor:1.0.0",
-      "thingName":"DistanceSensor",
-      "createdOn":"2018-05-15 10:08:29+0000",
-      "deviceId":"112233"
-   },
-   "features":{  
-      "distance":{  
-         "properties":{  
-            "status":{  
-               "sensor_value":74,
-               "sensor_units":"",
-               "min_measured_value":76,
-               "max_measured_value":96,
-               "min_range_value":3,
-               "max_range_value":69,
-               "current_calibration":"",
-               "application_type":""
-            }
-         }
-      }
-   }
-}
-```
+- Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
+All you need to change is the Host to the Sandbox URL in the src/main/org.eclipse.hono.devices/HonoHttpDevice.java File.
