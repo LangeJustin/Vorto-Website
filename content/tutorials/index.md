@@ -3,54 +3,169 @@ date: 2016-03-09T20:08:11+01:00
 title: Tutorials
 weight: 30
 ---
-
-## Connecting a Java based Device
-This tutorial explains how to generate a simple Java application that sends distance sensor data via MQTT.
+## Connecting a GroviPi sensor
+This tutorial explains how to generate a simple Pyhton application for you GrovePi that sends sensor data using MQTT.
 
 ### Prerequisites
-* Maven
-* IDE of your choice
 
-### 1. Choosing an Information Model
-- In this example, we will use an existing `Vorto Information Model` describing a [distace sensor] (http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor).
+*   [Python 3.x](https://www.python.org/)
+    
+*   IDEs - for Python: [Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python)
+    
+*   [Paho Python Client](https://eclipse.org/paho/clients/python/)
+    
+*   [GrovePi Sensor Kit](https://www.dexterindustries.com/grovepi/)
+    
 
 
-### 4. Using Code Generators
+### 1.  Setup your device.
+In this example Raspberry Pi is used but you can use any device which can run python.
+
+- [Install raspbian on the Raspberry Pi](https://www.raspberrypi.org/learning/software-guide/).
+- [Connect the pi to wifi](https://www.raspberrypi.org/learning/software-guide/wifi/).
+- [Enable ssh connection on your pi](https://www.raspberrypi.org/documentation/remote-access/ssh/) .
+- [Install python and required modules](https://github.com/eclipse/vorto/blob/development/tutorials/tutorial_install_python_and_required_python_modules.md).
+
+        
+### 2. Setup your development environment (on your development machine).
+
+- [Install Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python).
+- [Install python and required modules](https://github.com/eclipse/vorto/blob/development/tutorials/tutorial_install_python_and_required_python_modules.md).
+        
+### 3.  Generate application code using the Python generator.
+    
 - Go to the Information Model of your device in the Vorto Repository, eg [distance sensor](http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor).
-- On the right side, click on the Hono generator that will generate and download a Java application.
-- Unzip the project and import it as an existing maven project in the IDE of your choice, e.g. Eclipse
-- copy and paste the certificate of https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt to `src/main/resources/certificate/hono.crt` in your project
-- Edit configuration details in `src/main/java/device/distancesensor/Distancesensor.java`
+- On the right side, click on Eclipse Hono and select Pyhton
+- Click Generate
+- Store the ZIP file and extract the source code.
+- [Get the certificate](https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt) and copy and paste the content in a .crt file where you stored your source code
 
-**To check configurations details:**
+### 4. Registering to Eclipse Hono
+Eclipse Hono provides a remote service interface where we will send our data to. To use Hono, we need to `register our device` and `add device credentials`
+
+{{< warning title="Please choose a hard to guess Tenant" >}}{{< /warning >}}
+
+**Registering our Device**
 
 ```sh
-curl -i http://hono.eclipse.org:28080/credentials/DEFAULT_TENANT/112233
+curl -X POST http://hono.eclipse.org:28080/registration/<your_tenant>
+-i -H 'Content-Type: application/json'
+-d '{"device-id": "1234","thingId":"org.eclipse.vorto:1234","modelId":"demo.iot.device.DistanceSensor:1.0.0"}'
 ```
-> Note: AUTH_ID needs to be followed by "@YOUR_TENANT". See example below.
 
-	// Hono MQTT Endpoint
-	private static final String MQTT_ENDPOINT = "ssl://hono.eclipse.org:8883";
+**Adding device credentials**
+```sh
+PWD_HASH=$(echo -n "<your_passwort>" | openssl dgst -binary -sha512 | base64 | tr -d '\n') 
+curl -X POST http://hono.eclipse.org:28080/credentials/<your_tenant>
+-i -H 'Content-Type: application/json'
+-d 'JSON payload' 
+```
 
-	// Your Tenant
-	private static final String HONO_TENANT = "DEFAULT_TENANT";
+Example JSON payload:
+```sh
+{
+  "device-id": "1234",
+  "auth-id": "1234",
+  "type": "hashed-password",
+  "secrets": [
+    {
+      "hash-function": "sha-512",
+      "pwd-hash": "'$PWD_HASH'"
+    }
+  ]
+}
+```
 
-	// Your DeviceId
-	private static final String DEVICE_ID = "112233";
-	
-	// Device authentication ID
-	private static final String AUTH_ID = "112233@DEFAULT_TENANT";
-	
-	// Ditto Namespace
-	private static final String DITTO_NAMESPACE = "org.eclipse.vorto";
+        
+### 5.  Install GrovePi Python dependencies on the Raspberry Pi.
+    
+- Install necessary dependencies for GrovePi on the Raspberry Pi. To do so, just execute the commands
 
-	// Device authentication Password
-	private static final String PASSWORD = "secret123";
+```sh
+sudo curl https://raw.githubusercontent.com/DexterInd/Raspbian_For_Robots/master
+upd_script/fetch_grovepi.sh | bash
+       
+sudo reboot
+```
+
+- You can find full instructions [here](https://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/).
+    
+### 6.  Connect the sensor to the Raspberry Pi.
+    
+- Select a sensor from the kit.
+- Connect the selected sensor to the Raspberry Pi. In this tutorial, ultrasonic sensor is used, which measeurs a non-contact distance. The ultrasonic sensor is connected to **pin “3”** on the GrovePi.
+        
+### 7.  Update the application code.
+    
+The ZIP file contains the necessary libraries for your project and a sample Python main program. The main program is named after the thing type and stored in the main directory of the project. Open this file in your editor of choice to make the necessary adjustments.
+    
+Code sections which can be customized for your needs are marked with
+    
+```sh
+        ### BEGIN SAMPLE CODE
+```         
+and
+```sh
+    
+        ### END SAMPLE CODE
+```
+    
+{{< warning title="The following sections are of particular interest" >}}{{< /warning >}}
+    
+- Import the GrovePi dependencies:
+
+```sh      
+      from grovepi import *
+```     
+        
+- Update the Device Configuration values like:
+        
+```sh
+      hono_tenant = "<your_tenant>"
+      hono_password = "<your_passwort>"
+      hono_endpoint = "ssl://hono.eclipse.org:8883"
+      hono_deviceId = "1234"
+      hono_clientId = hono_deviceId
+      hono_authId = hono_deviceId + "@" + hono_tenant
+      hono_certificatePath = "PATH TO YOUR CERTIFICATE"
+      ditto_namespace = "org.eclipse.vorto"
+```
+            
+- Define a constant and assign the pin number of the pin to which the sensor is physically connected:
+
+```sh
+      # constants
+      ultrasonic_ranger = 3
+```            
+              
+- The function `periodicAction` is called periodically every `timePeriod` seconds. It is meant to periodically read your sensor’s values and transmit them using the thing type as a data model layer and the Paho MQTT Client.
+        
+- Read the data and assign it to the functional block properties:
+
+```sh     
+      infomodel.distance.sensor_value = ultrasonicRead(ultrasonic_ranger)
+      infomodel.distance.sensor_units = "cm"
+```       
+        
+- The variable `timePeriod` is set further down in the file. In this example, the variable `timePeriod` is set to 10.
+        
+### 8.  Run the application on the device.
+- Copy the code to the device ([How to copy files to Raspberry Pi?](https://www.raspberrypi.org/documentation/remote-access/ssh/scp.md)).
+- Open the Terminal and navigate to the source code folder.
+- Run the application by typing the following command:
+
+```sh  
+      python GENERATED_MAIN_PYTHON_FILE.py
+```      
+`example output:`
+
+![grovePi Screenshot](/images/tutorials/grovepi/output_screenhot_grovepi.png)
+
+- Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
+All you need to change is the Host to the Sandbox URL in the src/main/org.eclipse.hono.devices/HonoHttpDevice.java File.
 
 
-### 5. Run and verify data
-- Right click on `Distancesensor.java` in you IDE and `run as Java Application` to start sending data. 
-- See new state of your digital twin:
+{{< warning title="The Sandbox will delete it's registered devices daily!" >}}{{< /warning >}}
 
 -------------
 
@@ -90,24 +205,60 @@ This tutorial explains how to generate an Arduino sketch for a given Information
 
 ### 2. Generating an arduino sketch using the Arduino Generator (Arduino project).
     
-- Go to the Information Model of the [distace sensor] (http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor) in the Vorto Repository
+- Go to the Information Model of the [distance sensor] (http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor) in the Vorto Repository
 - On the right side, click on the Arduino generator
 - Store the ZIP file and extract the source code.
 - Open the INO file in your Arduino IDE.
 
-### 3. Adjust the Arduino Project according to your needs.
+### 3. Registering to Eclipse Hono
+Eclipse Hono provides a remote service interface where we will send our data to. To use Hono, we need to `register our device` and `add device credentials`
+
+{{< warning title="Please choose a hard to guess Tenant" >}}{{< /warning >}}
+
+**Registering our Device**
+
+```sh
+curl -X POST http://hono.eclipse.org:28080/registration/<your_tenant>
+-i -H 'Content-Type: application/json'
+-d '{"device-id": "1234","thingId":"org.eclipse.vorto:1234","modelId":"demo.iot.device.DistanceSensor:1.0.0"}'
+```
+
+**Adding device credentials**
+```sh
+PWD_HASH=$(echo -n "<your_passwort>" | openssl dgst -binary -sha512 | base64 | tr -d '\n') 
+curl -X POST http://hono.eclipse.org:28080/credentials/<your_tenant>
+-i -H 'Content-Type: application/json'
+-d 'JSON payload' 
+```
+
+Example JSON payload:
+```sh
+{
+  "device-id": "1234",
+  "auth-id": "1234",
+  "type": "hashed-password",
+  "secrets": [
+    {
+      "hash-function": "sha-512",
+      "pwd-hash": "'$PWD_HASH'"
+    }
+  ]
+}
+```
+
+### 4. Adjust the Arduino Project according to your needs.
 The following important changes have to be made:
 ```sh
 /* Your tenant in Eclipse Hono / Bosch IoT Hub */
-#define hono_tenant "DEFAULT_TENANT"
+#define hono_tenant "<your_tenant>"
 
 /* Device Configuration */
-String hono_deviceId = "112233";
+String hono_deviceId = "1234";
 String ditto_namespace = "org.eclipse.vorto";
 
 /* MQTT broker endpoint */
 const char* hono_endpoint = "ssl://hono.eclipse.org:8883";
-const char* hono_password = "secret123";
+const char* hono_password = "<your_passwort>";
 String hono_authId;
 
 #if (USE_SECURE_CONNECTION == 1)
@@ -133,133 +284,6 @@ openssl x509 -noout -fingerprint -sha1 -inform pem -in [certificate-file.crt]
 * Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
 All you need to change is the Host to the Sandbox URL in the src/main/org.eclipse.hono.devices/HonoHttpDevice.java File.
 
+{{< warning title="The Sandbox will delete it's registered devices daily!" >}}{{< /warning >}}
+
 -------------
-
-
-
-
-## Connecting a GroviPi sensor
-This tutorial explains how to generate a simple Pyhton application for you GrovePi that sends sensor data using MQTT.
-
-### Prerequisites
-
-*   [Python 3.x](https://www.python.org/)
-    
-*   IDEs - for Python: [Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python)
-    
-*   [Paho Python Client](https://eclipse.org/paho/clients/python/)
-    
-*   [GrovePi Sensor Kit](https://www.dexterindustries.com/grovepi/)
-    
-
-
-### 1.  Setup your device.
-In this example Raspberry Pi is used but you can use any device which can run python.
-
-- [Install raspbian on the Raspberry Pi](https://www.raspberrypi.org/learning/software-guide/).
-- [Connect the pi to wifi](https://www.raspberrypi.org/learning/software-guide/wifi/).
-- [Enable ssh connection on your pi](https://www.raspberrypi.org/documentation/remote-access/ssh/) .
-- [Install python and required modules](https://github.com/eclipse/vorto/blob/development/tutorials/tutorial_install_python_and_required_python_modules.md).
-
-        
-### 2. Setup your development environment (on your development machine).
-
-- [Install Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python).
-- [Install python and required modules](https://github.com/eclipse/vorto/blob/development/tutorials/tutorial_install_python_and_required_python_modules.md).
-        
-### 3.  Generate application code using the Python generator.
-    
-- Go to the Information Model of your device in the Vorto Repository, eg [distance sensor](http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor).
-- On the right side, click on Eclipse Hono and select Pyhton
-- Click Generate
-- Store the ZIP file and extract the source code.
-- [Get the certificate](https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt) and copy and paste the content in a .crt file where you stored your source code
-
-        
-### 4.  Install GrovePi Python dependencies on the Raspberry Pi.
-    
-- Install necessary dependencies for GrovePi on the Raspberry Pi. To do so, just execute the commands
-
-```sh
-sudo curl https://raw.githubusercontent.com/DexterInd/Raspbian_For_Robots/master
-upd_script/fetch_grovepi.sh | bash
-       
-sudo reboot
-```
-
-- You can find full instructions [here](https://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/).
-    
-### 5.  Connect the sensor to the Raspberry Pi.
-    
-- Select a sensor from the kit.
-- Connect the selected sensor to the Raspberry Pi. In this tutorial, ultrasonic sensor is used, which measeurs a non-contact distance. The ultrasonic sensor is connected to **pin “3”** on the GrovePi.
-        
-### 6.  Update the application code.
-    
-The ZIP file contains the necessary libraries for your project and a sample Python main program. The main program is named after the thing type and stored in the main directory of the project. Open this file in your editor of choice to make the necessary adjustments.
-    
-Code sections which can be customized for your needs are marked with
-    
-```sh
-        ### BEGIN SAMPLE CODE
-```         
-and
-```sh
-    
-        ### END SAMPLE CODE
-```
-    
-{{< warning title="The following sections are of particular interest" >}}{{< /warning >}}
-    
-- Import the GrovePi dependencies:
-
-```sh      
-      from grovepi import *
-```     
-        
-- Update the Device Configuration values like:
-        
-```sh
-      hono_tenant = "DEFAULT_TENANT"
-      hono_password = "secret123"
-      hono_endpoint = "ssl://hono.eclipse.org:8883"
-      hono_deviceId = "112233"
-      hono_clientId = hono_deviceId
-      hono_authId = hono_deviceId + "@" + hono_tenant
-      hono_certificatePath = "PATH TO YOUR CERTIFICATE"
-      ditto_namespace = "org.eclipse.vorto"
-```
-            
-- Define a constant and assign the pin number of the pin to which the sensor is physically connected:
-
-```sh
-      # constants
-      ultrasonic_ranger = 3
-```            
-              
-- The function `periodicAction` is called periodically every `timePeriod` seconds. It is meant to periodically read your sensor’s values and transmit them using the thing type as a data model layer and the Paho MQTT Client.
-        
-- Read the data and assign it to the functional block properties:
-
-```sh     
-      infomodel.distance.sensor_value = ultrasonicRead(ultrasonic_ranger)
-      infomodel.distance.sensor_units = "cm"
-```       
-        
-- The variable `timePeriod` is set further down in the file. In this example, the variable `timePeriod` is set to 10.
-        
-### 7.  Run the application on the device.
-- Copy the code to the device ([How to copy files to Raspberry Pi?](https://www.raspberrypi.org/documentation/remote-access/ssh/scp.md)).
-- Open the Terminal and navigate to the source code folder.
-- Run the application by typing the following command:
-
-```sh  
-      python GENERATED_MAIN_PYTHON_FILE.py
-```      
-`example output:`
-
-![grovePi Screenshot](/images/tutorials/grovepi/output_screenhot_grovepi.png)
-
-- Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
-All you need to change is the Host to the Sandbox URL in the src/main/org.eclipse.hono.devices/HonoHttpDevice.java File.
-        

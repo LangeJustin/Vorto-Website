@@ -27,7 +27,7 @@
       
       <guid>https://example.org/getting-started/</guid>
       <description>Connecting a Java based device to Eclipse Hono/Ditto Sandbox with Vorto This getting-started explains how to generate a simple Java application that sends distance sensor data via MQTT. In 4 simple steps, we will create and verify a digital twin of our device in Eclipse Ditto.
-Prerequisites  Maven IDE of your choice Curl  1. Choosing an Information Model  In this example, we will use an existing Vorto Information Model describing a distace sensor.</description>
+Prerequisites  Maven IDE of your choice Curl  1. Choosing an Information Model  In this example, we will use an existing Vorto Information Model describing a distance sensor.</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@ Prerequisites  Maven IDE of your choice Curl  1. Choosing an Information Model  
       
       <guid>https://example.org/tutorials/</guid>
       <description>Connecting a Java based Device This tutorial explains how to generate a simple Java application that sends distance sensor data via MQTT. In 4 simple steps, we will create a digital twin of our device in Eclipse Ditto.
-Prerequisites  Maven IDE of your choice Curl  1. Choosing an Information Model  In this example, we will use an existing Vorto Information Model describing a distace sensor.  Sandbox has limited resources</description>
+Prerequisites  Maven IDE of your choice Curl  1. Choosing an Information Model  In this example, we will use an existing Vorto Information Model describing a distance sensor.  Sandbox has limited resources</description>
     </item>
     
     <item>
