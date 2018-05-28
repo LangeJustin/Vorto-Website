@@ -3,7 +3,7 @@ title: "Getting Started"
 date: 2018-05-09T10:58:37+08:00
 weight: 20
 ---
-![Material Screenshot](/images/getting-started-ar2.png)
+![arch of getting started](/images/getting-started-ar2.png)
 
 This getting-started explains how to generate a simple **Java application** that sends **distance** sensor data via **MQTT** based on a Vorto Information Model.
 
@@ -16,19 +16,19 @@ This getting-started explains how to generate a simple **Java application** that
 ## Defining a Project
 1. In the Vorto Model Project Browser, click the + button.
 2. The Create new Vorto Project dialog opens:
-![Material Screenshot](/images/tutorials/getting_started/vorto_create_new_vorto_project_dialog.png)
+![new project](/images/tutorials/getting_started/vorto_create_new_vorto_project_dialog.png)
 3. Create new Vorto Project dialog
 4. Enter a name as Project Name, for example, `MyVortoProject`.
 5. Click on Finish.
 6. The new project is created.
 
-![Material Screenshot](/images/tutorials/getting_started/vorto_new_vorto_project_created.png)
+![project created](/images/tutorials/getting_started/vorto_new_vorto_project_created.png)
 
 ## Defining a Function Block
 > A function block provides an abstract view on a device to applications that want to employ the devices’ functionality. Thus, it is a consistent, self-contained set of (potentially re-usable) properties and capabilities.
 
 1. Right-click in the **Functionblocks** area and choose **New Functionblock** from the context menu.
-![Material Screenshot](/images/tutorials/getting_started/m2m_tc_create_function_block_designer_dialog_2.png)
+![create function](/images/tutorials/getting_started/m2m_tc_create_function_block_designer_dialog_2.png)
 2. Enter a name as **Function Block Name**, for example, Distance
 3. Adjust the entries for the input fields **Namespace** and **Version**, if necessary.
 4. Optionally, enter a description in the **Description** entry field.
@@ -143,7 +143,7 @@ Edit details in `src/main/java/device/distancesensor/Distancesensor.java` that f
 ## Run and verify data
 - Right click on `Distancesensor.java` in you IDE and `run as Java Application` to start sending data:
 
-![Material Screenshot](/images/run_java.PNG)
+![sending data](/images/run_java.PNG)
 
 
 - Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
