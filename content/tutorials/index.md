@@ -3,8 +3,8 @@ date: 2016-03-09T20:08:11+01:00
 title: Tutorials
 weight: 30
 ---
-## Connecting a GroviPi sensor
-This tutorial explains how to generate a simple Pyhton application for you GrovePi that sends sensor data using MQTT.
+## Connecting a GrovePi
+This tutorial explains how to generate a simple Python application for you GrovePi that sends sensor data to Eclipse Hono using MQTT.
 
 ### Prerequisites
 
@@ -24,44 +24,43 @@ In this example Raspberry Pi is used but you can use any device which can run py
 - [Install raspbian on the Raspberry Pi](https://www.raspberrypi.org/learning/software-guide/).
 - [Connect the pi to wifi](https://www.raspberrypi.org/learning/software-guide/wifi/).
 - [Enable ssh connection on your pi](https://www.raspberrypi.org/documentation/remote-access/ssh/) .
-- [Install python and required modules](https://github.com/eclipse/vorto/blob/development/tutorials/tutorial_install_python_and_required_python_modules.md).
+- [Install python and required modules]({{< ref "installation/grovepi.md" >}}).
 
         
 ### 2. Setup your development environment (on your development machine).
 
 - [Install Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python).
-- [Install python and required modules](https://github.com/eclipse/vorto/blob/development/tutorials/tutorial_install_python_and_required_python_modules.md).
+- [Install python and required modules]({{< ref "installation/grovepi.md" >}}).
         
 ### 3.  Generate application code using the Python generator.
     
-- Go to the Information Model of your device in the Vorto Repository, eg [distance sensor](http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor).
-- On the right side, click on Eclipse Hono and select Pyhton
-- Click Generate
+- Go to the Information Model of your device in the Vorto Repository, e.g. [distance sensor](http://vorto.eclipse.org/#/details/demo.iot.device/DistanceSensor/1.0.1?s=distancesensor).
+- On the right side, select the **Eclipse Hono Generator** and choose **Python**
+- Click **Generate**
 - Store the ZIP file and extract the source code.
 - [Get the certificate](https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt) and copy and paste the content in a .crt file where you stored your source code
 
 ### 4. Registering to Eclipse Hono
-Eclipse Hono provides a remote service interface where we will send our data to. To use Hono, we need to `register our device` and `add device credentials`
-
-{{< warning title="Please choose a hard to guess Tenant" >}}{{< /warning >}}
+Eclipse Hono provides a sandbox environment, which we can use in this tutorial to integrate the GrovePi with. So before we can send any data, we must register the device in Eclipse Hono. We use ```vortodemo``` as a **Hono tenant** and ```1234``` as a **device ID**:
 
 **Registering our Device**
 
 ```sh
-curl -X POST http://hono.eclipse.org:28080/registration/<your_tenant>
+curl -X POST http://hono.eclipse.org:28080/registration/vortodemo
 -i -H 'Content-Type: application/json'
--d '{"device-id": "1234","thingId":"org.eclipse.vorto:1234","modelId":"demo.iot.device.DistanceSensor:1.0.0"}'
+-d '{"device-id": "1234"}'
 ```
 
 **Adding device credentials**
+
 ```sh
-PWD_HASH=$(echo -n "<your_passwort>" | openssl dgst -binary -sha512 | base64 | tr -d '\n') 
-curl -X POST http://hono.eclipse.org:28080/credentials/<your_tenant>
+PWD_HASH=$(echo -n "S3cr3t" | openssl dgst -binary -sha512 | base64 | tr -d '\n') 
+curl -X POST http://hono.eclipse.org:28080/credentials/vortodemo
 -i -H 'Content-Type: application/json'
--d 'JSON payload' 
+-d 'JSON request payload' 
 ```
 
-Example JSON payload:
+JSON request payload:
 ```sh
 {
   "device-id": "1234",
@@ -93,7 +92,7 @@ sudo reboot
 ### 6.  Connect the sensor to the Raspberry Pi.
     
 - Select a sensor from the kit.
-- Connect the selected sensor to the Raspberry Pi. In this tutorial, ultrasonic sensor is used, which measeurs a non-contact distance. The ultrasonic sensor is connected to **pin “3”** on the GrovePi.
+- Connect the selected sensor to the Raspberry Pi. In this tutorial, ultrasonic sensor is used, which measures a non-contact distance. The ultrasonic sensor is connected to **pin “3”** on the GrovePi.
         
 ### 7.  Update the application code.
     
@@ -105,12 +104,12 @@ Code sections which can be customized for your needs are marked with
         ### BEGIN SAMPLE CODE
 ```         
 and
+
 ```sh
     
         ### END SAMPLE CODE
 ```
     
-{{< warning title="The following sections are of particular interest" >}}{{< /warning >}}
     
 - Import the GrovePi dependencies:
 
@@ -121,8 +120,8 @@ and
 - Update the Device Configuration values like:
         
 ```sh
-      hono_tenant = "<your_tenant>"
-      hono_password = "<your_passwort>"
+      hono_tenant = "vortodemo"
+      hono_password = "S3cr3t"
       hono_endpoint = "ssl://hono.eclipse.org:8883"
       hono_deviceId = "1234"
       hono_clientId = hono_deviceId
@@ -161,16 +160,13 @@ and
 
 ![grovePi Screenshot](/images/tutorials/grovepi/output_screenhot_grovepi.png)
 
-- Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
-All you need to change is the Host to the Sandbox URL in the src/main/org.eclipse.hono.devices/HonoHttpDevice.java File.
+- Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to receive the device data in Eclipse Hono.
 
-
-{{< warning title="The Sandbox will delete it's registered devices daily!" >}}{{< /warning >}}
 
 -------------
 
 ## Connecting a ESP8266 (Arduino)
-This tutorial explains how to generate an Arduino sketch for a given Information Model and send the device data via MQTT.
+This tutorial explains how to generate an Arduino sketch for a given Information Model and send the device data to Eclipse Hono via MQTT.
 
 ### Prerequisites
 * [Arduino IDE](https://www.arduino.cc/en/Main/Software)
@@ -211,22 +207,21 @@ This tutorial explains how to generate an Arduino sketch for a given Information
 - Open the INO file in your Arduino IDE.
 
 ### 3. Registering to Eclipse Hono
-Eclipse Hono provides a remote service interface where we will send our data to. To use Hono, we need to `register our device` and `add device credentials`
 
-{{< warning title="Please choose a hard to guess Tenant" >}}{{< /warning >}}
+Eclipse Hono provides a sandbox environment, which we can use in this tutorial to integrate the GrovePi with. So before we can send any data, we must register the device in Eclipse Hono. We use ```vortodemo``` as a **Hono tenant** and ```1234``` as a **device ID**:
 
 **Registering our Device**
 
 ```sh
-curl -X POST http://hono.eclipse.org:28080/registration/<your_tenant>
+curl -X POST http://hono.eclipse.org:28080/registration/vortodemo
 -i -H 'Content-Type: application/json'
--d '{"device-id": "1234","thingId":"org.eclipse.vorto:1234","modelId":"demo.iot.device.DistanceSensor:1.0.0"}'
+-d '{"device-id": "1234"}'
 ```
 
 **Adding device credentials**
 ```sh
-PWD_HASH=$(echo -n "<your_passwort>" | openssl dgst -binary -sha512 | base64 | tr -d '\n') 
-curl -X POST http://hono.eclipse.org:28080/credentials/<your_tenant>
+PWD_HASH=$(echo -n "S3cr3t" | openssl dgst -binary -sha512 | base64 | tr -d '\n') 
+curl -X POST http://hono.eclipse.org:28080/credentials/vortodemo
 -i -H 'Content-Type: application/json'
 -d 'JSON payload' 
 ```
@@ -248,9 +243,10 @@ Example JSON payload:
 
 ### 4. Adjust the Arduino Project according to your needs.
 The following important changes have to be made:
+
 ```sh
 /* Your tenant in Eclipse Hono / Bosch IoT Hub */
-#define hono_tenant "<your_tenant>"
+#define hono_tenant "vortodemo"
 
 /* Device Configuration */
 String hono_deviceId = "1234";
@@ -258,7 +254,7 @@ String ditto_namespace = "org.eclipse.vorto";
 
 /* MQTT broker endpoint */
 const char* hono_endpoint = "ssl://hono.eclipse.org:8883";
-const char* hono_password = "<your_passwort>";
+const char* hono_password = "S3cr3t";
 String hono_authId;
 
 #if (USE_SECURE_CONNECTION == 1)
@@ -281,9 +277,7 @@ openssl x509 -noout -fingerprint -sha1 -inform pem -in [certificate-file.crt]
 
 * Connect your ESP8266 to your computer and select the virtual COM port to which your device is connected in the Arduino IDE under **Tools -> Port** and upload the sketch.
 
-* Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to check if the data is sent succesfully.
-All you need to change is the Host to the Sandbox URL in the src/main/org.eclipse.hono.devices/HonoHttpDevice.java File.
+* Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to receive the device data from Eclipse Hono.
 
-{{< warning title="The Sandbox will delete it's registered devices daily!" >}}{{< /warning >}}
 
 -------------

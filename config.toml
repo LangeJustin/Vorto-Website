@@ -1,8 +1,8 @@
-baseurl = "https://example.org/"
+baseurl = "https://www.eclipse.org/vorto/"
 languageCode = "en-us"
 title = "Eclipse Vorto"
 theme = "hugo-material-docs"
-metadataformat = "yaml"
+metadataformat = "toml"
 canonifyurls = true
 # Enable Google Analytics by entering your tracking id
 googleAnalytics = ""
@@ -12,18 +12,20 @@ googleAnalytics = ""
 	author = "The Eclipse Vorto Project"
 	description = "Describe. Share. Integrate."
 	copyright = "The Eclipse Vorto Project"
-	version = "0.10.0.M3"
+	version = ""
   	logo = "images/vorto.png"
   	favicon = "images/vorto.ico"
 
 	# Repository
 	provider = "GitHub"
 	repo_url = "https://github.com/eclipse/vorto"
+	
+	hipp_url = "https://ci.eclipse.org/vorto"
 
 	permalink = "#"
 
 	# Custom assets
-	custom_css = ["css/vorto.css"]
+	custom_css = ["css/vorto.css","//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css"]
 	custom_js  = []
 
 	# Syntax highlighting theme
@@ -41,13 +43,13 @@ googleAnalytics = ""
 [social]
 	twitter = "VortoIoT"
 	github  = "eclipse/vorto"
-	email   = "dx-support@bosch.com"
+	email   = "vorto-dev@eclipse.org"
 	mailinglist = "https://accounts.eclipse.org/mailing-list/vorto-dev"
 
 
 [[menu.main]]
-	name   = "Vorto"
-	url    = "eclipse-vorto/"
+	name   = "What is Vorto"
+	url    = "introduction"
 	weight = 10
 
 [[menu.main]]
