@@ -22,8 +22,7 @@ Follow our latest tweets [here](https://twitter.com/VortoIoT).
 ## Contributing
 An overview of the contribution process is [here](https://wiki.eclipse.org/Development_Resources/Contributing_via_Git). The key points are:
 
-Ensure you have signed the Eclipse Foundation Contributor License Agreement (CLA)
-Fork the Vorto Repository on [Github](https://github.com/eclipse/vorto)
-Fix the issue and add suitable tests
-Ensure your contribution is collapsed into a single commit
-Create a pull request for your contribution
+1. Ensure you have signed the Eclipse Foundation Contributor License Agreement (CLA)
+2. Fork the Vorto Repository on [Github](https://github.com/eclipse/vorto)
+3. Fix the issue and add suitable tests
+4. Create a pull request for your contribution
