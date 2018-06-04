@@ -1045,3 +1045,8 @@ This section details the following topics:
 	</tr>
   </tbody>
 </table>
+
+-----------------------------
+
+## Vorto Meta Model
+![Vorto Meta Model UML](/images/documentation/Vorto_MetaModel.jpeg)
