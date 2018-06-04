@@ -77,6 +77,11 @@ googleAnalytics = ""
 	url    = "release-notes/"
 	weight = 60
 
+[[menu.main]]
+	name   = "Documentation"
+	url    = "documentation/"
+	weight = 70
+
 [blackfriday]
 	smartypants	= true
 	fractions = true

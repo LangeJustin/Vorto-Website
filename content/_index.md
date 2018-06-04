@@ -13,3 +13,4 @@ Vorto provides an Eclipse Toolset that allows Device Manufacturers to easily des
 ![Material Screenshot](/images/vorto_technicalview.png)
 
 > Technical View
+    
