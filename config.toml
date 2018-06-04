@@ -80,7 +80,8 @@ googleAnalytics = ""
 [[menu.main]]
 	name   = "Documentation"
 	url    = "documentation/"
-	weight = 70
+	weight = 100
+
 
 [blackfriday]
 	smartypants	= true
