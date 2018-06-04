@@ -4,4 +4,7 @@ title: Vorto Meta Model
 weight: 105
 ---
 
+This image describes the Vorto Meta Model.
+<!--more-->
+
 ![Vorto Meta Model UML](/images/documentation/Vorto_MetaModel.jpeg)

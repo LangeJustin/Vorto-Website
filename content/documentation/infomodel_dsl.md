@@ -3,6 +3,8 @@ date: 2016-03-09T20:08:11+01:00
 title: Information Model DSL
 weight: 109
 --- 
+This section describes the DSL grammer for a Vorto Information Model.
+<!--more-->
 
 ## Information Model DSL Reference
 

@@ -4,6 +4,9 @@ title: Mapping DSL
 weight: 110
 ---
 
+This section describes the DSL grammer for a Vorto Mapping.
+<!--more-->
+
 ## Information Model Mapping DSL Reference
 
 This section details the following topics:
