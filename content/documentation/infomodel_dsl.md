@@ -8,14 +8,7 @@ This section describes the DSL grammer for a Vorto Information Model.
 
 ## Information Model DSL Reference
 
-This section details the following topics:
-
-[Information Model DSL Syntax](#information-model-dsl-syntax)  
-
-[Information Model DSL Semantics](#information-model-dsl-semantics)  
-
-## Information Model DSL Syntax
-
+T
 Information Model DSL import function block model DSL.
 
     InformationModel:
@@ -33,7 +26,8 @@ Information Model DSL import function block model DSL.
 
     category:id;
 
-    functionblockProperty: id 'as' [fbs::functionblockModel|qualifiedName]
+    functionblockProperty: 
+    	(presence)? id 'as' [fbs::functionblockModel|qualifiedName]
         (string)?;
 
     string:
@@ -49,7 +43,7 @@ Information Model DSL import function block model DSL.
         '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*
     ;
 
-## Information Model DSL Semantics
+### Information Model DSL Semantics
 
 <table class="table table-bordered">
 <thead>

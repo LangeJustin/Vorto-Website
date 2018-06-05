@@ -9,17 +9,9 @@ This section describes the DSL grammer for a Vorto Mapping.
 
 ## Information Model Mapping DSL Reference
 
-This section details the following topics:
 
-[Information Model Mapping DSL Syntax](#information-model-mapping-dsl-syntax)  
-
-[Information Model Mapping DSL Semantics](#information-model-mapping-dsl-semantics)  
-
-## Information Model Mapping DSL Syntax
-
-    'mapping' '{'
-        'model' [infomodel::informationModel|qualifiedName]
-        'target' id
+    'functionblockmapping' '{'
+        'targetplatform' id
         (rule)*
     '}'
     ;
@@ -61,11 +53,15 @@ This section details the following topics:
     ;
 
     targetElement:
-        (StereoType,)*
+        stereoType | referencetype
     ;
 
     stereoType:
         id (with Attribute (',' attribute)*)
+    ;
+    
+    referenceType:
+    	'reference' [mapping::MappingModel]
     ;
 
 	qualifiedName: id ('.' id)*;
@@ -83,7 +79,7 @@ This section details the following topics:
         "'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|"'") )* "'"
     ;
 
-## Information Model Mapping DSL Semantics
+### Mapping DSL Semantics
 
 <table class="table table-bordered">
   <thead>

@@ -8,14 +8,6 @@ This section describes the DSL grammer for a Vorto Datatype.
 
 ## Datatype DSL Reference
 
-This section details the following topics:
-
-[Datatype DSL Syntax](#data-type-model-dsl-reference)
-
-[Datatype DSL Semantics](#the-datatype-dsl)
-
-## Data Type Model DSL Reference
-
 The following code represents the Data Type Model DSL syntax.
 
     model:entity | enumeration;
@@ -102,13 +94,13 @@ The following code represents the Data Type Model DSL syntax.
 
     version: int('.' int)*('-'id)?;
 
-## The Datatype DSL
+### The Datatype DSL
 
 An [**Entity**](#entity) element defines a new non-primitive data type that can be referenced by the function block. It contains [**Properties**](#properties) which are either of the [**Primitive**](#primitive-types) type, another [**Entity**](#entity), or a [**Dictionary**](#dictionary) type. It can also *inherit* from existing entities.
 
 An [**Enum**](#enum) is an enumeration of values of the same type similar to an *enum* in Java.
 
-### Entity
+#### Entity
 
 An Entity consist of 
 

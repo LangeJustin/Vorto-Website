@@ -8,14 +8,6 @@ This section describes the DSL grammer for a Vorto Function Block.
 
 ## Function Block Model DSL Reference
 
-This section details the following topics:  
-
-[Function Block DSL Syntax](#function-block-dsl-syntax)  
-
-[Function Block DSL Semantics](#function-block-dsl-semantics)  
-
-## Function Block DSL Syntax
-
 The following code represents the Function Block Model DSL syntax. Function block model use all variables that are defined in Data Type DSL.
 
     functionblockmodel:
@@ -53,7 +45,7 @@ The following code represents the Function Block Model DSL syntax. Function bloc
     ;
 
     operation :
-        ('presence')? ('breakable')? id '(' (param (paramDescription)?)? ')' ('returns'  returnType)? (returnTypeDescription)?
+        (presence)? ('breakable')? id '(' (param (paramDescription)?)? ')' ('returns'  returnType)? (returnTypeDescription)?
     ;
 
     returnType :
@@ -99,23 +91,6 @@ The following code represents the Function Block Model DSL syntax. Function bloc
         '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*
     ;
 
-## Function Block DSL Semantics
-
-This section details the following topics:
-
-[Function Block Model](#function-block-model)  
-
-[Function Block](#function-block)  
-
-[Property](#property)  
-
-[Operation](#operation)  
-
-[Event](#event)  
-
-[Entity](#entity)  
-
-[Enum](#enum)
 
 ### Function Block Model
 
@@ -136,12 +111,14 @@ Refer to functionblockmodel in [Function Block DSL Syntax](#function-block-dsl-s
       configuration{  
         mandatory blinking as boolean "if the lamp is currently blinking or not"  
         mandatory on as boolean "if the lamp is currently switched on"  
-        mandatory powerConsumption as int
-          "the amount of power the lamp is consuming"  
       }  
+      status {
+        mandatory powerConsumption as int
+          "the amount of power the lamp is consuming" 
+      }
       fault{  
-      mandatory bulbDefect as boolean
-        "true if the light bulb of the lamp is defect"  
+      	mandatory bulbDefect as boolean
+        	"true if the light bulb of the lamp is defect"  
       }  
       operations{  
         blink(blinkType as int <MIN 0, MAX 5> "The type of blink") "sets the blinking type for the lamp"  
@@ -253,7 +230,10 @@ The following table describes the parameters and elements of a `functionblock`. 
       configuration{
         mandatory blinking as boolean "if the lamp is currently blinking or not"
         mandatory on as boolean "if the lamp is currently switched on"
-        mandatory powerConsumption as int
+      }
+      
+      status {
+       	mandatory powerConsumption as int
           "the amount of power the lamp is consuming"
       }
 
@@ -499,5 +479,6 @@ Example
         }  
       }  
     ...
+
 
 -------------------------------------
