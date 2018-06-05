@@ -154,5 +154,5 @@ Now let's go back to our generated project and update the `src/main/java/device/
 
 	> Log in to [Vorto Repository](http://vorto.eclipse.org) with your Github account and click on **Share** and follow the instructions. 
 	
-- [Connect an ESP8266 - based device](../tutorials/#connecting-a-esp8266-arduino)
-- [Connect a GrovePi](../tutorials/#connecting-a-grovepi)
+- [Connect an ESP8266 - based device to Eclipse Hono](../tutorials/#connecting-a-esp8266-arduino)
+- [Connect a GrovePi to Eclipse Hono](../tutorials/#connecting-a-grovepi)

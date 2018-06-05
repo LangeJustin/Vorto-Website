@@ -3,7 +3,7 @@ date: 2016-03-09T20:08:11+01:00
 title: Tutorials
 weight: 30
 ---
-## Connecting a GrovePi
+## Connecting a GrovePi to Eclipse Hono
 This tutorial explains how to generate a simple Python application for you GrovePi that sends sensor data to Eclipse Hono using MQTT.
 
 ### Prerequisites
@@ -165,7 +165,7 @@ and
 
 -------------
 
-## Connecting a ESP8266 (Arduino)
+## Connecting a ESP8266 (Arduino) to Eclipse Hono
 This tutorial explains how to generate an Arduino sketch for a given Information Model and send the device data to Eclipse Hono via MQTT.
 
 ### Prerequisites
@@ -278,6 +278,5 @@ openssl x509 -noout -fingerprint -sha1 -inform pem -in [certificate-file.crt]
 * Connect your ESP8266 to your computer and select the virtual COM port to which your device is connected in the Arduino IDE under **Tools -> Port** and upload the sketch.
 
 * Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to receive the device data from Eclipse Hono.
-
 
 -------------

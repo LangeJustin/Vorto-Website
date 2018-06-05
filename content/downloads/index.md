@@ -3,21 +3,12 @@ title: "Downloads"
 date: 2018-05-09T10:58:37+08:00
 weight: 40
 ---
-To create Informations Models, you need to download the [Vorto IoT Toolset plugins](https://marketplace.eclipse.org/content/vorto-toolset).
-
-## Installation
-
-This section details the following topics:
-
-[Installing the Vorto Toolset](#installing-the-vorto-toolset)  
-
-[Upgrading the Vorto Toolset](#upgrading-the-vorto-toolset)  
 
 ## Installing the Vorto Toolset
 
 This section lists the steps required to install the Vorto Toolset.
 
-Install the Eclipse Vorto Toolset in one of the following three ways:
+Install the Eclipse Vorto Toolset in one of the following ways:
  
 * [Installing from the Eclipse Marketplace](#installing-from-the-eclipse-marketplace)  
 * [Installing from the Vorto Toolset Update Site](#installing-from-the-vorto-toolset-update-site)  
