@@ -26,13 +26,13 @@ In this example Raspberry Pi is used but you can use any device which can run py
 - [Install raspbian on the Raspberry Pi](https://www.raspberrypi.org/learning/software-guide/).
 - [Connect the pi to wifi](https://www.raspberrypi.org/learning/software-guide/wifi/).
 - [Enable ssh connection on your pi](https://www.raspberrypi.org/documentation/remote-access/ssh/) .
-- [Install python and required modules]({{< ref "installation/grovepi.md" >}}).
+- [Install python and required modules]({{< ref "installation.md" >}}).
 
         
 ### 2. Setup your development environment (on your development machine).
 
 - [Install Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python).
-- [Install python and required modules]({{< ref "installation/grovepi.md" >}}).
+- [Install python and required modules]({{< ref "installation.md" >}}).
         
 ### 3.  Generate application code using the Python generator.
     
