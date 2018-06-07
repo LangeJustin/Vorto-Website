@@ -1,6 +1,6 @@
 ---
-date: 2016-03-09T20:08:11+01:00
-title: Connecting a GrovePi
+date: 2018-03-09T20:08:11+01:00
+title: Connecting a GrovePi to Eclipse Hono
 weight: 32
 ---
 
@@ -8,7 +8,7 @@ This tutorial explains how to generate a simple Python application for you Grove
 
 <!--more-->
 
-### Prerequisites
+## Prerequisites
 
 *   [Python 3.x](https://www.python.org/)
     
@@ -26,13 +26,13 @@ In this example Raspberry Pi is used but you can use any device which can run py
 - [Install raspbian on the Raspberry Pi](https://www.raspberrypi.org/learning/software-guide/).
 - [Connect the pi to wifi](https://www.raspberrypi.org/learning/software-guide/wifi/).
 - [Enable ssh connection on your pi](https://www.raspberrypi.org/documentation/remote-access/ssh/) .
-- [Install python and required modules]({{< ref "installation.md" >}}).
+- [Install python and required modules]({{< ref "installation/grovepi.md" >}}).
 
         
 ### 2. Setup your development environment (on your development machine).
 
 - [Install Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python).
-- [Install python and required modules]({{< ref "installation.md" >}}).
+- [Install python and required modules]({{< ref "installation/grovepi.md" >}}).
         
 ### 3.  Generate application code using the Python generator.
     
@@ -164,5 +164,6 @@ and
 
 - Follow [Consuming Messages from Java for Hono] (https://www.eclipse.org/hono/dev-guide/java_client_consumer/) to receive the device data in Eclipse Hono.
 
+## What's next? 
 
--------------
+- [Connect an ESP8266 to Eclipse Hono]({{< ref "tutorials/arduino.md" >}})
